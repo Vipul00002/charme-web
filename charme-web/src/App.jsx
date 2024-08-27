@@ -1,18 +1,18 @@
-import { useEffect, useRef } from "react"
-import video from "./assets/video.mp4"
+import { useEffect, useRef } from "react";
+import videoD from "./assets/desktop-new.mp4";
+import videoM from "./assets/mobile-new.mp4";
+import { useMediaQuery } from "react-responsive";
 
 function App() {
-  const videoRef = useRef()
+  const videoRef = useRef();
+  const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
 
-  // useEffect(()=>{
-  //   videoRef.current?.play()
-  // },[videoRef.current])
   return (
-      <video autoPlay loop playsInline muted ref={videoRef}>
-        <source  src={video} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-  )
+    <video autoPlay loop playsInline muted ref={videoRef} className="h-full">
+      <source src={isPortrait?videoM:videoD} type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  );
 }
 
-export default App
+export default App;
